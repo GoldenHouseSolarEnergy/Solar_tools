@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Grid, Paper, CssBaseline, Button, Typography, TextField } from "@material-ui/core";
+import { Container, Grid, Paper, Box, Button, Typography, TextField } from "@material-ui/core";
 function roundToTwo(num) {
     return +(Math.round(num + "e+2") + "e-2");
 }
@@ -23,6 +23,12 @@ const Calculator = () => {
         const value = event.target.value == "" ? "" : parseFloat(event.target.value);
         setKw(value);
     };
+
+    const handleClear = () => {
+        setDisSquareMeter("");
+        setDisLandSize("");
+        setDisKw("");
+    };
     useEffect(() => {
         setDisSquareMeter(squareMeter);
         setDisLandSize(squareMeter == "" ? "" : roundToTwo(squareMeter * 0.305));
@@ -31,7 +37,7 @@ const Calculator = () => {
     useEffect(() => {
         setDisSquareMeter(landSize == "" ? "" : roundToTwo(landSize / 0.305));
         setDisLandSize(landSize);
-        setDisKw(roundToTwo(landSize == "" ? "" : landSize / 1.7));
+        setDisKw(landSize == "" ? "" : roundToTwo(landSize / 1.7));
     }, [landSize]);
     useEffect(() => {
         setDisSquareMeter(kw == "" ? "" : roundToTwo((kw * 1.7) / 0.305));
@@ -49,38 +55,56 @@ const Calculator = () => {
                 <Grid container spacing={0}>
                     <Grid item md={12} xs={12}>
                         <Grid container justifyContent="center">
-                            <TextField
-                                label="平方公尺"
-                                InputLabelProps={{ shrink: true }}
-                                variant="filled"
-                                onChange={handleSquareMeterChange}
-                                maxwidth="90%"
-                                value={disSquareMeter}
-                            />
+                            <Box width="80%">
+                                <TextField
+                                    label="平方公尺"
+                                    InputLabelProps={{ shrink: true }}
+                                    variant="filled"
+                                    onChange={handleSquareMeterChange}
+                                    fullWidth
+                                    value={disSquareMeter}
+                                />
+                            </Box>
                         </Grid>
                     </Grid>
                     <Grid item md={12} xs={12}>
                         <Grid container justifyContent="center">
-                            <TextField
-                                label="坪數"
-                                InputLabelProps={{ shrink: true }}
-                                variant="filled"
-                                onChange={handleLandSizeChange}
-                                maxwidth="90%"
-                                value={disLandSize}
-                            />
+                            <Box width="80%">
+                                <TextField
+                                    label="坪數"
+                                    InputLabelProps={{ shrink: true }}
+                                    variant="filled"
+                                    onChange={handleLandSizeChange}
+                                    fullWidth
+                                    value={disLandSize}
+                                />
+                            </Box>
                         </Grid>
                     </Grid>
                     <Grid item md={12} xs={12}>
                         <Grid container justifyContent="center">
-                            <TextField
-                                label="KW數"
-                                InputLabelProps={{ shrink: true }}
-                                variant="filled"
-                                onChange={handleKwChange}
-                                maxwidth="90%"
-                                value={disKw}
-                            />
+                            <Box width="80%">
+                                <TextField
+                                    label="KW數"
+                                    InputLabelProps={{ shrink: true }}
+                                    variant="filled"
+                                    onChange={handleKwChange}
+                                    fullWidth
+                                    value={disKw}
+                                />
+                            </Box>
+                        </Grid>
+                    </Grid>
+                    <Grid item md={12} xs={12}>
+                        <br />
+                    </Grid>
+                    <Grid item md={12} xs={12}>
+                        <Grid container justifyContent="center">
+                            <Box width="80%">
+                                <Button color="primary" variant="contained" fullWidth onClick={handleClear}>
+                                    清除
+                                </Button>
+                            </Box>
                         </Grid>
                     </Grid>
                 </Grid>

@@ -34,7 +34,7 @@ const App = () => {
                 <div className={classes.paper}>
                     <br />
                     <Typography variant="h4" color="textSecondary" align="left">
-                        綠能小工具
+                        黃金屋綠能小工具
                     </Typography>
                     <br />
                     <Grid container spacing={2}>
