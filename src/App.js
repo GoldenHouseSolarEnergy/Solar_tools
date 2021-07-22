@@ -4,6 +4,8 @@ import Box from "@material-ui/core/Box";
 import { makeStyles } from "@material-ui/core/styles";
 const Calculator = React.lazy(() => import("./pages/Calculator"));
 const BusinessCheckList = React.lazy(() => import("./pages/BusinessCheckList"));
+const ArrayCalc = React.lazy(() => import("./pages/ArrayCalc"));
+
 const Copyright = () => {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
@@ -22,9 +24,9 @@ const useStyles = makeStyles((theme) => ({
         alignItems: "center",
     },
 }));
-const toolList = [<Calculator />, <BusinessCheckList />];
+const toolList = { Calc: <Calculator />, BCL: <BusinessCheckList />, ACalc: <ArrayCalc /> };
 const App = () => {
-    const [tool, setTool] = useState(0);
+    const [tool, setTool] = useState("Calc");
     const classes = useStyles();
     return (
         <Container component="main" maxWidth="md">
@@ -39,20 +41,21 @@ const App = () => {
                     <br />
                     <Grid container spacing={2}>
                         <Grid item md={3} xs={6}>
-                            <Button variant="contained" color="primary" fullWidth onClick={() => setTool(0)}>
+                            <Button variant="contained" color="primary" fullWidth onClick={() => setTool("Calc")}>
                                 坪數計算機
                             </Button>
                         </Grid>
                         <Grid item md={3} xs={6}>
-                            <Button variant="contained" color="primary" fullWidth onClick={() => setTool(1)}>
-                                業務拜訪前檢查
+                            <Button variant="contained" color="primary" fullWidth onClick={() => setTool("ACalc")}>
+                                排布計算機
                             </Button>
                         </Grid>
                         <Grid item md={3} xs={6}>
-                            <Button variant="contained" color="primary" fullWidth disabled>
-                                待開發
+                            <Button variant="contained" color="primary" fullWidth onClick={() => setTool("BCL")}>
+                                業務拜訪前檢查
                             </Button>
                         </Grid>
+
                         <Grid item md={3} xs={6}>
                             <Button variant="contained" color="primary" fullWidth disabled>
                                 待開發
