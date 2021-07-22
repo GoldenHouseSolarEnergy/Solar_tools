@@ -42,7 +42,7 @@ const App = () => {
                     <Grid container spacing={2}>
                         <Grid item md={3} xs={6}>
                             <Button variant="contained" color="primary" fullWidth onClick={() => setTool("Calc")}>
-                                坪數計算機
+                                面積換算
                             </Button>
                         </Grid>
                         <Grid item md={3} xs={6}>

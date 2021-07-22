@@ -54,7 +54,7 @@ const Calculator = () => {
         <Container>
             <br />
             <Typography variant="h6" color="textSecondary" align="left">
-                坪數計算機
+                面積換算
             </Typography>
             <br />
             <Paper>
