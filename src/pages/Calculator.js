@@ -11,17 +11,14 @@ const Calculator = () => {
     const [disLandSize, setDisLandSize] = useState("");
     const [disKw, setDisKw] = useState("");
 
-    const handleSquareMeterChange = async (event) => {
-        const value = event.target.value == "" ? "" : parseFloat(event.target.value);
-        setSquareMeter(value);
+    const handleSquareMeterChange = (event) => {
+        setSquareMeter(event.target.value);
     };
     const handleLandSizeChange = (event) => {
-        const value = event.target.value == "" ? "" : parseFloat(event.target.value);
-        setLandSize(value);
+        setLandSize(event.target.value);
     };
     const handleKwChange = (event) => {
-        const value = event.target.value == "" ? "" : parseFloat(event.target.value);
-        setKw(value);
+        setKw(event.target.value);
     };
 
     const handleClear = () => {
@@ -29,20 +26,29 @@ const Calculator = () => {
         setDisLandSize("");
         setDisKw("");
     };
+
+    const getValue = (str) => {
+        if (str === "") return "";
+        else if (str[str.length - 1] === ".") return str;
+        else return parseFloat(str);
+    };
     useEffect(() => {
-        setDisSquareMeter(squareMeter);
-        setDisLandSize(squareMeter == "" ? "" : roundToTwo(squareMeter * 0.305));
-        setDisKw(squareMeter == "" ? "" : roundToTwo((squareMeter * 0.305) / 1.7));
+        const value = getValue(squareMeter);
+        setDisSquareMeter(value);
+        setDisLandSize(squareMeter === "" ? "" : roundToTwo(squareMeter * 0.305));
+        setDisKw(squareMeter === "" ? "" : roundToTwo((squareMeter * 0.305) / 1.7));
     }, [squareMeter]);
     useEffect(() => {
-        setDisSquareMeter(landSize == "" ? "" : roundToTwo(landSize / 0.305));
-        setDisLandSize(landSize);
-        setDisKw(landSize == "" ? "" : roundToTwo(landSize / 1.7));
+        const value = getValue(landSize);
+        setDisSquareMeter(value === "" ? "" : roundToTwo(value / 0.305));
+        setDisLandSize(value);
+        setDisKw(value === "" ? "" : roundToTwo(value / 1.7));
     }, [landSize]);
     useEffect(() => {
-        setDisSquareMeter(kw == "" ? "" : roundToTwo((kw * 1.7) / 0.305));
-        setDisLandSize(kw == "" ? "" : roundToTwo(kw * 1.7));
-        setDisKw(kw);
+        const value = getValue(kw);
+        setDisSquareMeter(value === "" ? "" : roundToTwo((kw * 1.7) / 0.305));
+        setDisLandSize(value === "" ? "" : roundToTwo(kw * 1.7));
+        setDisKw(value);
     }, [kw]);
     return (
         <Container>

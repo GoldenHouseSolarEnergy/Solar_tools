@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Card, Box, Grid, Paper, CssBaseline, Button, Typography, TextField } from "@material-ui/core";
+import { Container, Card, Box, Grid, Button, Typography } from "@material-ui/core";
 import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
 import CheckBoxOutlinedIcon from "@material-ui/icons/CheckBoxOutlined";
 const checkList = [
@@ -7,8 +7,8 @@ const checkList = [
     "DM",
     "一代葵花寶典(藍色)",
     "二代葵花寶典(紅色)",
-    "一代鋁脊(無導水槽)",
-    "二代鋁脊(有導水槽)",
+    "一代鋁擠(無導水槽)",
+    "二代鋁擠(有導水槽)",
     "空拍機及電池",
     "測距儀",
     "指南針",
