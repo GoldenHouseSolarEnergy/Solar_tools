@@ -54,19 +54,36 @@ const Calculator = () => {
         const l_value = getValue(length);
         const w_value = getValue(width);
         if (typeof l_value === "number" && typeof w_value === "number") {
-            if (w_value > l_value) {
-                const tmp = length;
-                setLength(width);
-                setWidth(tmp);
-                return;
-            }
             setSquareMeter(roundToTwo(l_value * w_value));
-            let l_pieces = parseInt(l_value / 1.7);
-            if (l_value - l_pieces * 1.7 >= 1) l_pieces += 1;
-            let w_pieces = parseInt(w_value);
-            if (w_value - w_pieces * 1.7 >= 0.5) w_pieces += 1;
-            setPiece((l_pieces * w_pieces).toString() + "(" + l_pieces.toString() + "*" + w_pieces.toString() + ")");
-            setKw(roundToTwo((l_pieces * w_pieces) / 3));
+            if (w_value > l_value) {
+                let w_pieces = parseInt(w_value / 1.7);
+                if (w_value - w_pieces * 1.7 >= 1) w_pieces += 1;
+                let l_pieces = parseInt(l_value);
+                if (l_value - l_pieces * 1 >= 0.6) l_pieces += 1;
+                setPiece(
+                    (l_pieces * w_pieces).toString() +
+                        "(短邊 " +
+                        l_pieces.toString() +
+                        "* 長邊 " +
+                        w_pieces.toString() +
+                        ")"
+                );
+                setKw(roundToTwo((l_pieces * w_pieces) / 3));
+            } else {
+                let l_pieces = parseInt(l_value / 1.7);
+                if (l_value - l_pieces * 1.7 >= 1) l_pieces += 1;
+                let w_pieces = parseInt(w_value);
+                if (w_value - w_pieces * 1 >= 0.6) w_pieces += 1;
+                setPiece(
+                    (l_pieces * w_pieces).toString() +
+                        "(長邊 " +
+                        l_pieces.toString() +
+                        "* 短邊 " +
+                        w_pieces.toString() +
+                        ")"
+                );
+                setKw(roundToTwo((l_pieces * w_pieces) / 3));
+            }
         }
     }, [length, width]);
     useEffect(() => {
@@ -160,7 +177,7 @@ const Calculator = () => {
                                                             color="textSecondary"
                                                             gutterBottom
                                                         >
-                                                            總片數
+                                                            總片數(長邊餘1米以上+1，寬邊餘0.6米以上+1)
                                                         </Typography>
                                                         <Typography variant="body1" component="p">
                                                             {piece}
