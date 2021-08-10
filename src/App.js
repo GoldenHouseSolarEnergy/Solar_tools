@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 const Calculator = React.lazy(() => import("./pages/Calculator"));
 const BusinessCheckList = React.lazy(() => import("./pages/BusinessCheckList"));
 const ArrayCalc = React.lazy(() => import("./pages/ArrayCalc"));
+const Easymap = React.lazy(() => import("./pages/Easymap"));
 
 const Copyright = () => {
     return (
@@ -24,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
         alignItems: "center",
     },
 }));
-const toolList = { Calc: <Calculator />, BCL: <BusinessCheckList />, ACalc: <ArrayCalc /> };
+const toolList = { Calc: <Calculator />, BCL: <BusinessCheckList />, ACalc: <ArrayCalc />, Easymap: <Easymap /> };
 const App = () => {
     const [tool, setTool] = useState("Calc");
     const classes = useStyles();
@@ -57,8 +58,8 @@ const App = () => {
                         </Grid>
 
                         <Grid item md={3} xs={6}>
-                            <Button variant="contained" color="primary" fullWidth disabled>
-                                待開發
+                            <Button variant="contained" color="primary" fullWidth onClick={() => setTool("Easymap")}>
+                                地籍圖資查詢
                             </Button>
                         </Grid>
                     </Grid>
